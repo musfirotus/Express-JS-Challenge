@@ -1,0 +1,50 @@
+extends layouts.pug
+
+block content
+    .col-12
+        h1 Home
+        hr
+        h1 
+          center Tambah Todo List
+    .col-12
+        form(method="POST" action='/')
+            label(for = 'name') Input Task
+            input(id = 'name' type='text' class="form-control mb-3" name="name" placeholder="Task")
+            label(for = 'Des') Input Description
+            input(id='Des' type='text' class="form-control mb-3" name="description" placeholder="Description") 
+            button(type="submit" class="btn btn-primary") Send
+
+    .col-12
+      hr
+      h3 List Todo
+      table.table
+          tr
+            th No
+            th#nama Todo
+            th#des Description
+            th#status Status
+            th#aksi Action
+        
+          each to,i in todo
+            .row
+              tr
+                td= i + 1
+                .col-3
+                  if to.status == false
+                    td=to.name
+                  else
+                    td=`${to.name} (Done)`
+                .col-3
+                    td=to.description
+                .col-2
+                  if to.status == false 
+                    td
+                      a(class="btn btn-success" href=`/${to._id}/done` role="button") Done
+                  else
+                    td
+                      a(class="btn btn-warning" href=`/${to._id}/undone` role="button") Undone
+                  td
+                    a(class="btn btn-primary" href=`/detail/${to._id}` role="button") Details/Edit
+                    span
+                    a(class="btn btn-danger" href=`/${to._id}/del` role="button") Delete
+              br
