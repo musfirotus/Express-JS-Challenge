@@ -7,16 +7,16 @@ block content
         h1 
           center Tambah Todo List
     .col-12
-        form(action='/' method="POST")
-          .row
-            .col
-              label(for = 'name') Tambah Task
-              input(id = 'name' type='text' class="form-control mb-3" name="name" placeholder="Task")
-            .col
-              label(for = 'Des') Tambah Deskripsi Task
-              input(id='Des' type='text' class="form-control mb-3" name="description" placeholder="Description")
-          .row
-            button(type="submit" class="btn btn-primary") Send
+      form(action='/' method="POST")
+        .row
+          .col
+            label(for = 'name') Tambah Task
+            input(id = 'name' type='text' class="form-control mb-3" name="name" placeholder="Task")
+          .col
+            label(for = 'des') Tambah Deskripsi Task
+            input(id='des' type='text' class="form-control mb-3" name="description" placeholder="Description")
+        .row
+          button(type="submit" class="btn btn-primary") Send
 
     .col-12
       hr
@@ -55,4 +55,3 @@ block content
                     span  
                     a(class="btn btn-danger" href=`/${to._id}/del` role="button")
                       i.fas.fa-trash-alt
-              br

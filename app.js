@@ -49,6 +49,9 @@ app.post('/', async (req, res) => {
     res.redirect('/')
 })
 
+// Detail Data
+
+
 // Hapus data
 app.get("/:id?/del", async (req, res) => {
     await todoModel.deleteOne({
