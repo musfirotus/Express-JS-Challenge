@@ -7,22 +7,27 @@ block content
         h1 
           center Tambah Todo List
     .col-12
-        form(method="POST" action='/')
-            label(for = 'name') Input Task
-            input(id = 'name' type='text' class="form-control mb-3" name="name" placeholder="Task")
-            label(for = 'Des') Input Description
-            input(id='Des' type='text' class="form-control mb-3" name="description" placeholder="Description") 
+        form(action='/' method="POST")
+          .row
+            .col
+              label(for = 'name') Tambah Task
+              input(id = 'name' type='text' class="form-control mb-3" name="name" placeholder="Task")
+            .col
+              label(for = 'Des') Tambah Deskripsi Task
+              input(id='Des' type='text' class="form-control mb-3" name="description" placeholder="Description")
+          .row
             button(type="submit" class="btn btn-primary") Send
 
     .col-12
       hr
       h3 List Todo
-      table.table
+      table(class="table table-dark")
           tr
             th No
             th#nama Todo
             th#des Description
             th#status Status
+            th#editstatus Edit Status
             th#aksi Action
         
           each to,i in todo
@@ -30,21 +35,24 @@ block content
               tr
                 td= i + 1
                 .col-3
-                  if to.status == false
-                    td=to.name
-                  else
-                    td=`${to.name} (Done)`
+                  td=to.name
                 .col-3
-                    td=to.description
+                  td=to.description
                 .col-2
                   if to.status == false 
+                    td= "Undone"
                     td
-                      a(class="btn btn-success" href=`/${to._id}/done` role="button") Done
+                      a(class="btn btn-success" href=`/${to._id}/done` role="button")
+                        i.fas.fa-check-circle
                   else
+                    td= "Done"
                     td
-                      a(class="btn btn-warning" href=`/${to._id}/undone` role="button") Undone
+                      a(class="btn btn-warning" href=`/${to._id}/undone` role="button")
+                        i.fas.fa-undo
                   td
-                    a(class="btn btn-primary" href=`/detail/${to._id}` role="button") Details/Edit
-                    span
-                    a(class="btn btn-danger" href=`/${to._id}/del` role="button") Delete
+                    a(class="btn btn-primary" style="align: left" href=`/detail/${to._id}` role="button")
+                      i.fas.fa-search-plus
+                    span  
+                    a(class="btn btn-danger" href=`/${to._id}/del` role="button")
+                      i.fas.fa-trash-alt
               br
